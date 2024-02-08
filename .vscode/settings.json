@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "pypy3.9-v7.3.11-win64"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
