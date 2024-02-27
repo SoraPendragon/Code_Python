@@ -1,6 +1,6 @@
 #Checking Grades
 
-grade = 27            #int(input ("What score did you get? "))
+grade = int(input ("What score did you get? "));            #int(input ("What score did you get? "))
 
 if grade < 0 or grade >100:
     print ("Enter a real score, please!")

@@ -5,5 +5,6 @@
 
 # String interpolation
 
-for i in range(5):
-  print(f'The square of {i} is {i*i}')
+for i in range(1, 101, 1):
+  print(i,'- I will not use Snapchat in class')
+
