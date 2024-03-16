@@ -3,13 +3,17 @@
 from math import *
 import random
 
-user_hp = 10                                                                            #Sailor HP
-reader_hp = 3                                                                           #Tries -> chance you can restart a loop.
+#Sailor HP
+user_hp = 10                                                                            
+#Tries -> chance you can restart a loop.
+reader_hp = 3 
+
 
 print ("Hello, is it you that will come with me today?")
 reader_name = input("What's the name of my dear reader? ")
 
-user_move = {                                                                           #Pirate Attack - Random
+ #Pirate Attack - Random
+user_move = {
     "It's a Critical hit!" : 5,
     "You land a Normal Hit" : 2,
     "You Missed..." : 0,
@@ -18,12 +22,15 @@ user_move = {                                                                   
 print ("A pleasure to meet you", reader_name, "! What should we do today?")
 print ("You have", reader_hp,"try for this story")
 
-while user_hp > 0 and reader_hp >= 0:                                                   #First Loop - OctoFight or BedDeath
+#First Loop - OctoFight or BedDeath
+while user_hp > 0 and reader_hp >= 0:                                                   
     restart_loop = False
-    user_hp = 10    #Sailor HP
+    #Sailor HP
+    user_hp = 10    
     print ("Shall we go outside? See if the sea is happy today?(1) \nOr should we stay in bed?(2) ")
     choice = int(input("What do you want to do? "))
-    if choice == 1:                                                                     #Start Adventure -> OctoFight
+    #Start Adventure -> OctoFight
+    if choice == 1:                                                                    
         print ("-------------------------- A Day on a Boat --------------------------")
         print ("---------------- Or: Why did I choose this project?  ----------------")             
         print ("The sea look beautiful, you can see a miles away! \n Oh no! An Octopus is attacking the ship! \n Quick! Grab your tool, you need to defend the ship! ")
@@ -40,35 +47,44 @@ while user_hp > 0 and reader_hp >= 0:                                           
         print ("------------------ \___/   \____/   \____/   \___/ ------------------")
         print ("---------------------------------------------------------------------")
         print ("You have", reader_hp,"lifes")
-    elif choice == 2 :                                                                  #Bed Death - Start Again
+    #Bed Death - Start Again
+    elif choice == 2 :
         print("Oh no, your bed sheet is trying to swallow you whole!")
         user_hp = 0
         print (reader_name,"... I'm sorry... We can't do it")
         print ("You have", reader_hp, "try left")
         if restart_loop:
             continue
-    elif choice == 3 :                                                                  #Skip The loop
+    #Skip The loop    
+    elif choice == 3 :                                                                  
         print ("---------------------- Skipped the First Loop -----------------------")
         break
-    else:                                                                               #Wrong Input
+    #Wrong Input
+    else:                                                                               
         choice = int(input("Please enter a valid choice to start your adventure: "))    
 
-    monster_hp = 5                                                                      #Monster HP
-    mon_move = {                                                                        #Monster Move - Random
+    #Monster HP
+    monster_hp = 5 
+    #Monster Move - Random                                                                     
+    mon_move = {                                                                        
         "Tentacle": 1,
         "Head" : 2,
         "Double Tentacle" : 4,
     }
 
 
-
-    while user_hp > 0 and monster_hp > 0:                                               #Fight Loop 
+    #Fight Loop - 1
+    while user_hp > 0 and monster_hp > 0:                                                
         
         print ("Your turn!")
         user_attack = int(input("Attack(1) or Defend(2)! It's your choice: "))
-        monster_attack = random.choice(list(mon_move))                                  #Choose the Attack for the Monster : 
-                                                                                        #Tentacule (1 dmg), Head (2 dmg), Double Tentacule (4 Dmg)
-        if user_attack == 1 :                                                           #User Choice : Attack 
+       
+        #Choose the Attack for the Monster :
+        #Tentacule (1 dmg), Head (2 dmg), Double Tentacule (4 Dmg)
+        monster_attack = random.choice(list(mon_move))
+        #User Choice : Attack
+        
+        if user_attack == 1 : 
             print ("You punch the octopus in the face")
             user_damage = random.choice(list(user_move))
             monster_hp -= user_move[user_damage]
@@ -77,10 +93,12 @@ while user_hp > 0 and reader_hp >= 0:                                           
             print ("the Monster use", monster_attack)
             print ("--------------- It deal",mon_move[monster_attack],"damage -------------------")
             user_hp = user_hp - mon_move[monster_attack]
-        elif user_attack == 2:                                                          #User Choice : Defend
+        #User Choice : Defend    
+        elif user_attack == 2:                                                          
             print ("You defend yourself")
             user_hp = user_hp - (mon_move[monster_attack] // 2)
-        else:                                                                           #Wrong Input
+        #Wrong Input
+        else:                                                                           
             choice = int(input("Please enter a valid action"))                           
         
         print ("the Monster use", monster_attack)
@@ -91,10 +109,12 @@ while user_hp > 0 and reader_hp >= 0:                                           
             print ("HP left", user_hp)
         print ("The Monster has", monster_hp, "HP left")
 
-    if user_hp >= 0 and monster_hp <= 0 :                                               #Win the Fight
+    #Win the Fight
+    if user_hp >= 0 and monster_hp <= 0 :                                               
         print ("You win!")
         print ("Time to eat your lunch!")
-    else :                                                                              #Loose the Fight
+    #Loose the Fight
+    else :                                                                              
         print ("--------------------------- You loose... ----------------------------")
         reader_hp -= 1
         user_hp = 10
@@ -102,28 +122,31 @@ while user_hp > 0 and reader_hp >= 0:                                           
         print ("------------------------- Time to try again! ------------------------")
         restart_loop = True
         
-
-    if user_hp <= 0:                                                                    #Lost One Try
+    #Lost One Try
+    if user_hp <= 0:                                                                    
         reader_hp -= 1
-
-    if monster_hp <= 0 :                                                                #Check End Loop
+    #Check End Loop
+    if monster_hp <= 0 :                                                                
         print ("end of the fight")
         break
-
-    if restart_loop:                                                                    #Restart Loop
+    #Restart Loop
+    if restart_loop:                                                                    
         continue
 
-if reader_hp <= 0:                                                                      #Game Over
+#Game Over
+if reader_hp <= 0:                                                                      
     print ("----------------------- At least you tried... -----------------------")
     print ("----------------------------- Game Over -----------------------------")
-else:                                                                                   #Continue to the next loop
+#Continue to the next loop
+else:                                                                                   
     print ("I didn't have a good fight like this in ages... Thanks mate!")
     print ("Time to take a look around my ship. *whistle* What a mess! I know i was drunk yesterday but didn't know that i left the ship like this... ")
     print ("Sorry dear", reader_name,"... It's time to clean the ship....")
     print ("What do you want to clean first? \nPut the Deck in order? or go my Room?(1) \nIt need a little(Big) cleaning too you know? (2)")
     print ("Pssst... We can also Choose to not clean at all but it will be harder later for me...(3)")
     choice = int(input("What do you choose? "))
-    if choice == 1 :                                                                    #The Cutlass
+    #The Cutlass : deal +2 each attack :
+    if choice == 1 :                                                                    
         print ("You choose to Clean the Deck!")
         print ("Oh look at that! Hiding behind a barrel, you found my trusty Cutlass!")
         print ("I finally feel more at ease now that i have it.")
@@ -131,9 +154,10 @@ else:                                                                           
         print ("-------------------- You have obtained a Cutlass --------------------")
         print ("--------------------- You deal more damage now ----------------------")
         print ("------------------------- Cutlass = Dmg +2 --------------------------")
-        cutlass = True                                                                  #deal +2 each attack : 
+        cutlass = True
         coat = False                                                                    #I will bring peace with the power of friendship and this big knife I found...  
-    elif choice == 2 :                                                                  #The Buccaneer Coat
+    #The Buccaneer Coat : loose less HP, - 2 each dmg you take
+    elif choice == 2 :                                                                  
         print ("You choose to clean the Room")
         print ("Why did you choose to do this? I hated when my mother wanted me to clean my room! :'[")
         print ("It's dark in here... I forgot to open the curtain this morning. Wait... You see this dark shape on the desk? Someone is on the ship with us...")
@@ -145,12 +169,14 @@ else:                                                                           
         print ("--------- Maybe a little light will help him win this fight?---------")
         print ("Open the Windows?(1) \nOr maybe you trust you guy enough and you're sure it's going to be ok?(2)")
         windows = int(input("What do you do? "))
-        if windows == 1 :                                                              #Open Window
+        #Open Window
+        if windows == 1 :                                                              
             print ("------------------------ You open the Window ------------------------")
             print ("Oh...")
             print ("------ The dark Shape was in fact just a coat on the hanger... ------")
             print ("Man... Can we never talk about that again... please", reader_name, "?")
-        elif windows == 2 :                                                            #Let the Pirate Fight in the dark
+        #Let the Pirate Fight in the dark
+        elif windows == 2 :                                                            
             print ("--------------- You let the Pirate continue his fight ---------------")
             print ("------------------- You hear him stifle a scream --------------------")
             user_hp -= 1
@@ -164,30 +190,36 @@ else:                                                                           
             print ("Well... It was a fine enemy! Haha... Maybe next time I will put the hanger next to the door")
             print ("You know... Just to see it when i open the door... haha...")
             print ("The Pirate grab his coat and put it")
-        else:                                                                          #Wrong Input
+        #Wrong Input
+        else:                                                                          
             windows = int(input("Please enter a valid choice: "))    
     
         print ("---------------- You have obtained a Bouccaneer Coat ----------------")
         print ("--------------------- You take less damage now ----------------------")
         print ("--------------------- Bouccarneer Coat = Def +2 ---------------------")
-        coat = True                                                                 #loose less HP each time you defend : Buccaneer jacket def +2
+        coat = True
         cutlass = False
-    elif choice == 3:                                                                  #No Stuff to continue
+    #No Stuff to continue
+    elif choice == 3:                                                                  
         print ("Haaa, finally someone who understand me!")
         print ("I hate to clean! Thanks mates!")
-    else:                                                                              #Wrong Input
+    #Wrong Input
+    else:                                                                              
         choice  = int(input("Please enter a valid choice: "))                  
         
-user_knife = {                                                                           #Pirate Knife Attack - Random
+#Pirate Knife Attack - Random
+user_knife = {
     "It's a Critical hit!" : 7,
     "You land a Normal Hit" : 4,
     "You grazed it!" : 2,
     "You Missed..." : 0,
 }
 
+#Cleaning Duty -> Coat or Cutlass for fight  
 if choice == 1 or choice == 2:
     print ("What a beautiful day...after all this cleaning, I'm Hungry!") 
     print ("It's already noon! Time to prepare Lunch")
+#No Stuff to Continue, Harder for future fight
 else : 
     print ("Since i'm not cleaning, i think i will write some verse for this evening song")
     print ("All good pirate must sing after having dinner! With a little bit of rum of course...")
@@ -208,12 +240,15 @@ print ("---------------------- She start to scream and rush toward him! --------
 print ("-------------------------- it's time to fight the seagulls --------------------------")
 
 
-monster_hp = 7                                                                      #Monster HP
+#Monster HP
+monster_hp = 7                                                                      
 
-while user_hp > 0 and reader_hp > 0:                                                    #Second Loop - Stuff/Eat and then Fight (Seagull or I don't know) 
+#Second Loop - Fight (Seagull) 
+while user_hp > 0 and reader_hp > 0:
     while monster_hp > 0:
         restart_loop = False
-        mon_move = {                                                                        #Monster Move - Random
+        #Monster Move - Random
+        mon_move = {                                                                        
             "Wing Kick": 3,
             "Peck" : 4,
             "Double Peck" : 6,
@@ -221,16 +256,22 @@ while user_hp > 0 and reader_hp > 0:                                            
         
         print ("Your turn!")
         print ("I have", user_hp,"HP left")
+        #User Input
         user_attack = int(input("Attack(1) or Defend(2)! It's your choice: "))
-        monster_attack = random.choice(list(mon_move))                                  #Choose the Attack for the Monster : 
-                                                                                        #Tentacule (1 dmg), Head (2 dmg), Double Tentacule (4 Dmg)
-        if user_attack == 1 :                                                           #User Choice : Attack 
+        #Choose the Attack for the Monster : 
+        #Wing Kick (3 dmg), Peck (4 dmg), Double Peck (6 Dmg)
+        monster_attack = random.choice(list(mon_move))
+
+        #User Choice : Attack 
+        if user_attack == 1 :
+            #Attack With Knife                                                           
             if cutlass == True:
                 user_damage = random.choice (list(user_knife))
                 monster_hp -= user_knife[user_damage]
                 print (user_damage)
                 print ("--------------- You deal", user_knife[user_damage], "damage ------------------")
                 print ("Check knife dmg:",user_damage)   #//
+            #Attack without Knife
             else:
                 user_damage = random.choice(list(user_move))
                 monster_hp -= user_move[user_damage]
@@ -238,11 +279,13 @@ while user_hp > 0 and reader_hp > 0:                                            
                 print ("--------------- You deal", user_move[user_damage], "damage ------------------")
                 print ("Check Hand dmg:", user_damage)   #//
             
+            #Check msg for Monster HP
             if monster_hp < 0:
                print ("The Monster has 0 HP left")
             else:
                 print ("The Monster has", monster_hp, "HP left")
             
+            #Check if Monster has enough HP to attack
             if monster_hp > 0:
                 print ("the Monster use", monster_attack)
                 print ("It deal",mon_move[monster_attack],"damage")
@@ -250,28 +293,35 @@ while user_hp > 0 and reader_hp > 0:                                            
                     coat_dmg = mon_move[monster_attack] - 2
                     user_hp = user_hp - coat_dmg  
                     print ("check coat_dmg: ")              #//
+            #Monster Can't Attack because no HP
                 else:
                     user_hp = user_hp - mon_move[monster_attack]
                     print ("Check no coat dmg")             #//
-                        
-        elif user_attack == 2:                                                          #User Choice : Defend
+
+        #User Choice : Defend        
+        elif user_attack == 2:                                                          
             print ("You defend yourself")
             print ("the Monster use", monster_attack)
-            if coat == True:                                                            #Defend with Coat
+            #Defend with Coat
+            if coat == True:                                                            
                 coat_dmg = (mon_move[monster_attack] - 2) // 2
                 user_hp = user_hp - coat_dmg
                 print ("check coat_dmg")                #//
-            else:                                                                       #Defend without Coat
+            #Defend without Coat
+            else:                                                                       
                 user_hp = user_hp - (mon_move[monster_attack] // 2)
                 print ("check no coat dmg")             #// 
             
+            #Check msg for Monster HP
             if monster_hp < 0:
                print ("The Monster has 0 HP left")
             else:
-                print ("The Monster has", monster_hp, "HP left")   
-        else:                                                                           #Wrong Input
+                print ("The Monster has", monster_hp, "HP left")
+        #Wrong Input 
+        else:                                                                           
             choice = int(input("Please enter a valid action"))                           
         
+        #Msg Loose HP With and Without Coat
         if user_hp > 0 and coat == False:
             print ("###### You lose", mon_move[monster_attack],"HP ######")
         elif user_hp > 0 and coat == True:
@@ -281,13 +331,16 @@ while user_hp > 0 and reader_hp > 0:                                            
         
         print ("HP left:", user_hp)
 
-        if user_hp > 0 and monster_hp <= 0 :                                            #Win the Fight
+        #Win the Fight
+        if user_hp > 0 and monster_hp <= 0 :                                            
             print ("You win!")
             print ("Time to continue our day!")
             break
-        elif user_hp > 0 and monster_hp > 0:                                            # Continue
+        # Continue
+        elif user_hp > 0 and monster_hp > 0:                                            
             continue
-        else :                                                                          #Loose the Fight
+        #Loose the Fight
+        else :                                                                          
             print ("--------------------------- You loose... ----------------------------")
             reader_hp -= 1
             user_hp = 10
@@ -296,5 +349,6 @@ while user_hp > 0 and reader_hp > 0:                                            
             print (reader_hp, "try left")
             restart_loop = True
 
-        if restart_loop:                                                                    #Restart Loop
+        #Restart Loop
+        if restart_loop:                                                                    
             continue
