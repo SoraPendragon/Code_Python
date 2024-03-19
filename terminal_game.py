@@ -259,98 +259,97 @@ while reader_hp > 0:
     monster_hp = 7                                                                      
 
     #Second Loop - Fight (Seagull) 
-    while user_hp > 0 and reader_hp > 0:
-        while monster_hp > 0:
-            restart_loop = False
-            #Monster Move - Random
-            mon_move = {                                                                        
-                "Wing Kick": 3,
-                "Peck" : 4,
-                "Double Peck" : 6,
-            }
-            
-            print ("Your turn!")
-            print ("I have", user_hp,"HP left")
-            #User Input
-            user_attack = int(input("Attack(1) or Defend(2)! It's your choice: "))
-            #Choose the Attack for the Monster : 
-            #Wing Kick (3 dmg), Peck (4 dmg), Double Peck (6 Dmg)
-            monster_attack = random.choice(list(mon_move))
+    while user_hp > 0 and reader_hp > 0 and monster_hp > 0:
+        restart_loop = False
+        #Monster Move - Random
+        mon_move = {                                                                        
+            "Wing Kick": 3,
+            "Peck" : 4,
+            "Double Peck" : 6,
+        }
+        
+        print ("Your turn!")
+        print ("I have", user_hp,"HP left")
+        #User Input
+        user_attack = int(input("Attack(1) or Defend(2)! It's your choice: "))
+        #Choose the Attack for the Monster : 
+        #Wing Kick (3 dmg), Peck (4 dmg), Double Peck (6 Dmg)
+        monster_attack = random.choice(list(mon_move))
 
-            #User Choice : Attack 
-            if user_attack == 1 :
-                #Attack With Knife                                                           
-                if cutlass == True:
-                    user_damage = random.choice (list(user_knife))
-                    monster_hp -= user_knife[user_damage]
-                    print (user_damage)
-                    print ("--------------- You deal", user_knife[user_damage], "damage ------------------")
-                    print ("Check knife dmg:",user_damage)   #//
-                #Attack without Knife
-                else:
-                    user_damage = random.choice(list(user_move))
-                    monster_hp -= user_move[user_damage]
-                    print (user_damage)
-                    print ("--------------- You deal", user_move[user_damage], "damage ------------------")
-                    print ("Check Hand dmg:", user_damage)   #//
-                
-                #Check msg for Monster HP
-                if monster_hp < 0:
-                    print ("The Monster has 0 HP left")
-                else:
-                    print ("The Monster has", monster_hp, "HP left")
-                
-                #Check if Monster has enough HP to attack
-                if monster_hp > 0:
-                    print ("the Monster use", monster_attack)
-                    print ("It deal",mon_move[monster_attack],"damage")
-                    if coat == True:
-                        coat_dmg = mon_move[monster_attack] - 2
-                        user_hp = user_hp - coat_dmg  
-                        print ("check coat_dmg: ")              #//
-                #Monster Can't Attack because no HP
-                    else:
-                        user_hp = user_hp - mon_move[monster_attack]
-                        print ("Check no coat dmg")             #//
-
-            #User Choice : Defend        
-            elif user_attack == 2:                                                          
-                print ("You defend yourself")
-                print ("the Monster use", monster_attack)
-                #Defend with Coat
-                if coat == True:                                                            
-                    coat_dmg = (mon_move[monster_attack] - 2) // 2
-                    user_hp = user_hp - coat_dmg
-                    print ("check coat_dmg")                #//
-                #Defend without Coat
-                else:                                                                       
-                    user_hp = user_hp - (mon_move[monster_attack] // 2)
-                    print ("check no coat dmg")             #// 
-                
-                #Check msg for Monster HP
-                if monster_hp < 0:
-                    print ("The Monster has 0 HP left")
-                else:
-                    print ("The Monster has", monster_hp, "HP left")
-            elif user_attack == 3:
-                print ("---------------------- Skipped the Second Loop -----------------------")
-                monster_hp = 0
-                break
-            #Wrong Input 
-            else:                                                                           
-                choice = int(input("Please enter a valid action"))
-                user_hp = -17
-                restart_loop = True                           
-            
-            #Msg Loose HP With and Without Coat
-            if user_hp > 0 and coat == False:
-                print ("###### You lose", mon_move[monster_attack],"HP ######")
-            elif user_hp > 0 and coat == True:
-                print ("------- You lose", coat_dmg,"HP -------")
+        #User Choice : Attack 
+        if user_attack == 1 :
+            #Attack With Knife                                                           
+            if cutlass == True:
+                user_damage = random.choice (list(user_knife))
+                monster_hp -= user_knife[user_damage]
+                print (user_damage)
+                print ("--------------- You deal", user_knife[user_damage], "damage ------------------")
+                print ("Check knife dmg:",user_damage)   #//
+            #Attack without Knife
             else:
-                print ("###### You lose 0 HP ######")
+                user_damage = random.choice(list(user_move))
+                monster_hp -= user_move[user_damage]
+                print (user_damage)
+                print ("--------------- You deal", user_move[user_damage], "damage ------------------")
+                print ("Check Hand dmg:", user_damage)   #//
             
-            print ("HP left:", user_hp)
+            #Check msg for Monster HP
+            if monster_hp < 0:
+                print ("The Monster has 0 HP left")
+            else:
+                print ("The Monster has", monster_hp, "HP left")
+            
+            #Check if Monster has enough HP to attack
+            if monster_hp > 0:
+                print ("the Monster use", monster_attack)
+                print ("It deal",mon_move[monster_attack],"damage")
+                if coat == True:
+                    coat_dmg = mon_move[monster_attack] - 2
+                    user_hp = user_hp - coat_dmg  
+                    print ("check coat_dmg: ")              #//
+            #Monster Can't Attack because no HP
+                else:
+                    user_hp = user_hp - mon_move[monster_attack]
+                    print ("Check no coat dmg")             #//
+
+        #User Choice : Defend        
+        elif user_attack == 2:                                                          
+            print ("You defend yourself")
+            print ("the Monster use", monster_attack)
+            #Defend with Coat
+            if coat == True:                                                            
+                coat_dmg = (mon_move[monster_attack] - 2) // 2
+                user_hp = user_hp - coat_dmg
+                print ("check coat_dmg")                #//
+            #Defend without Coat
+            else:                                                                       
+                user_hp = user_hp - (mon_move[monster_attack] // 2)
+                print ("check no coat dmg")             #// 
+            
+            #Check msg for Monster HP
+            if monster_hp < 0:
+                print ("The Monster has 0 HP left")
+            else:
+                print ("The Monster has", monster_hp, "HP left")
+        elif user_attack == 3:
+            print ("---------------------- Skipped the Second Loop -----------------------")
+            monster_hp = 0
+            break
+        #Wrong Input 
+        else:                                                                           
+            choice = int(input("Please enter a valid action"))
+            user_hp = -17
+            restart_loop = True                           
+        
+        #Msg Loose HP With and Without Coat
+        if user_hp > 0 and coat == False:
+            print ("###### You lose", mon_move[monster_attack],"HP ######")
+        elif user_hp > 0 and coat == True:
+            print ("------- You lose", coat_dmg,"HP -------")
+        else:
+            print ("###### You lose 0 HP ######")
+        
+        print ("HP left:", user_hp)
 
         #Win the Fight
         if user_hp > 0 and monster_hp <= 0 :                                            
