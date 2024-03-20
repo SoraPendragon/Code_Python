@@ -5,6 +5,6 @@
 
 # String interpolation
 
-for i in range(1, 101, 1):
+for i in range(1, 5, 1):
   print(i,'- I will not use Snapchat in class')
 

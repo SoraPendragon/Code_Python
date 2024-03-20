@@ -14,7 +14,7 @@ print ("Hello, is it you that will come with me today?")
 reader_name = input("What's the name of my dear reader? ")
 while reader_hp > 0:
     loop += 1 
-    print ("this is the loop n°",loop)
+    #print ("this is the loop n°",loop)   #//
     #Pirate Attack - Random
     user_move = {
         "It's a Critical hit!" : 5,
@@ -284,14 +284,14 @@ while reader_hp > 0:
                 monster_hp -= user_knife[user_damage]
                 print (user_damage)
                 print ("--------------- You deal", user_knife[user_damage], "damage ------------------")
-                print ("Check knife dmg:",user_damage)   #//
+                #print ("Check knife dmg:",user_damage)   #//
             #Attack without Knife
             else:
                 user_damage = random.choice(list(user_move))
                 monster_hp -= user_move[user_damage]
                 print (user_damage)
                 print ("--------------- You deal", user_move[user_damage], "damage ------------------")
-                print ("Check Hand dmg:", user_damage)   #//
+                #print ("Check Hand dmg:", user_damage)   #//
             
             #Check msg for Monster HP
             if monster_hp < 0:
@@ -306,11 +306,11 @@ while reader_hp > 0:
                 if coat == True:
                     coat_dmg = mon_move[monster_attack] - 2
                     user_hp = user_hp - coat_dmg  
-                    print ("check coat_dmg: ")              #//
+                    #print ("check coat_dmg: ")              #//
             #Monster Can't Attack because no HP
                 else:
                     user_hp = user_hp - mon_move[monster_attack]
-                    print ("Check no coat dmg")             #//
+                    #print ("Check no coat dmg")             #//
 
         #User Choice : Defend        
         elif user_attack == 2:                                                          
@@ -320,11 +320,11 @@ while reader_hp > 0:
             if coat == True:                                                            
                 coat_dmg = (mon_move[monster_attack] - 2) // 2
                 user_hp = user_hp - coat_dmg
-                print ("check coat_dmg")                #//
+                #print ("check coat_dmg")                #//
             #Defend without Coat
             else:                                                                       
                 user_hp = user_hp - (mon_move[monster_attack] // 2)
-                print ("check no coat dmg")             #// 
+                #print ("check no coat dmg")             #// 
             
             #Check msg for Monster HP
             if monster_hp < 0:
@@ -400,6 +400,13 @@ while reader_hp > 0:
             if choice == 1:
                 print ("------- You hear a crack in the sky as you enter the letter 1 -------")
                 print ("---- The sky become dark as the eyes of the pirate become white -----")
+                for i in range(1, 5, 1) :
+                    if i < 2:
+                        print ("---------- So? What am I doing? 1 ----------")
+                    elif i <= 3:
+                        print ("---------- So? What am I doing? ### ----------")
+                    else:
+                        print ("----------So? What am I doing? 2 ----------")
                 print ("------ You watch with Horror as the number 1 turn slowly in a 2 -----")
                 print ("Oh I knew you would choose to nap! You really are my best mate,", reader_name, "!")
                 print ("...")
@@ -526,14 +533,14 @@ while reader_hp > 0:
                     monster_hp -= user_knife[user_damage]
                     print (user_damage)
                     print ("--------------- You deal", user_knife[user_damage], "damage ------------------")
-                    print ("Check knife dmg:",user_damage)   #//
+                    #print ("Check knife dmg:",user_damage)   #//
                 #Attack without Knife
                 else:
                     user_damage = random.choice(list(user_move))
                     monster_hp -= user_move[user_damage]
                     print (user_damage)
                     print ("--------------- You deal", user_move[user_damage], "damage ------------------")
-                    print ("Check Hand dmg:", user_damage)   #//
+                    #print ("Check Hand dmg:", user_damage)   #//
                 
                 #Check msg for Monster HP
                 if monster_hp < 0:
@@ -553,11 +560,11 @@ while reader_hp > 0:
                     if coat == True:
                         coat_dmg = mon_move[monster_attack] - 2
                         user_hp = user_hp - coat_dmg  
-                        print ("check coat_dmg: ")              #//
+                        #print ("check coat_dmg: ")              #//
                 #Monster Can't Attack because no HP
                     else:
                         user_hp = user_hp - mon_move[monster_attack]
-                        print ("Check no coat dmg")             #//
+                        #print ("Check no coat dmg")             #//
             #User Choice : Defend        
             elif user_attack == 2:                                                          
                 print ("You defend yourself")
@@ -566,11 +573,11 @@ while reader_hp > 0:
                 if coat == True:                                                            
                     coat_dmg = (mon_move[monster_attack] - 2) // 2
                     user_hp = user_hp - coat_dmg
-                    print ("check coat_dmg")                #//
+                    #print ("check coat_dmg")                #//
                 #Defend without Coat
                 else:                                                                       
                     user_hp = user_hp - (mon_move[monster_attack] // 2)
-                    print ("check no coat dmg")             #// 
+                    #print ("check no coat dmg")             #// 
                 
                 #Check msg for Monster HP
                 if monster_hp < 0:
